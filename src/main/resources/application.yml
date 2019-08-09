@@ -1,0 +1,39 @@
+server:
+  servlet:
+    context-path:
+  port: 8080
+#  session-timeout: 30
+  uri-encoding: UTF-8
+
+
+logging:
+  config: classpath:log/log4j2.xml
+
+
+
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://10.16.78.26:4433;sendStringParametersAsUnicode=true
+    username: intern_test # User
+    password: 123456 # PWD
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 5
+      auto-commit: false
+      idle-timeout: 30000
+      pool-name: HikariConnectionPool
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: "SELECT 1"
+
+
+
+mybatis:
+  mapper-locations: "classpath:mapper/*/*"
+  type-aliases-package: com.example.demo.pojo  #??
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+
