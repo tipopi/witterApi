@@ -30,8 +30,8 @@ spring:
 
 
 mybatis:
-  mapper-locations: "classpath:mapper/*/*"
-  type-aliases-package: com.example.demo.pojo  #??
+  mapper-locations: "classpath:mapper/*"
+  type-aliases-package: com.tipo.witter.pojo
   configuration:
     map-underscore-to-camel-case: true
 

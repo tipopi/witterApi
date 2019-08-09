@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-@MapperScan("com.example.demo.mapper")
+@MapperScan("com.tipo.witter.mapper")
 public class WitterApplication {
 
 	public static void main(String[] args) {
