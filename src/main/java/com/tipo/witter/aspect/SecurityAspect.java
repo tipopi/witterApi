@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecurityAspect {
     private final Logger log = LoggerFactory.getLogger(getClass());
-    @Pointcut("execution(* com.template.controller..*.*(..))")
+    @Pointcut("execution(* com.tipo.witter.controller..*.*(..))")
     public void pointCut(){}
     /**
      * 暂时不使用token,只切controller和安全注解
