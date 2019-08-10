@@ -1,10 +1,10 @@
 package com.tipo.witter.tool;
 
 /**
- * @Description 基本常量池
- * @Autor Tipo
- * @Date 7/27/20192:47 PM
- * @Version 1.0
+ *  基本常量池
+ * @author  Tipo
+ * @date 7/27/20192:47 PM
+ * @version 1.0
  */
 public class BaseStatic {
     public static final String CHARSET="utf-8";
@@ -25,6 +25,7 @@ public class BaseStatic {
     public static final String COOKIE_ACCOUNT="account";
     public static final String COOKIE_PATH="/";
     public static final String MD5_SALT="PILAOBAN";
+    public static final String CORS_DEFULT="*";
 
     /**分页每页总条数*/
     public static final Integer ROWS  = 25;

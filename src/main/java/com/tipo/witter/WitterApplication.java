@@ -7,6 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
+/**
+ *
+ * @author  Tipo
+ * @date 7/27/20192:03 PM
+ * @version 1.0
+ */
 @SpringBootApplication
 @MapperScan("com.tipo.witter.mapper")
 public class WitterApplication {
@@ -18,7 +24,7 @@ public class WitterApplication {
 	/**
 	 * 配置跨域,满足浏览器同源策略
 	 * @date 8:11 AM 8/1/2019
-	 * @param []
+	 * @param
 	 * @return org.springframework.boot.web.servlet.FilterRegistrationBean
 	 **/
 	@Bean

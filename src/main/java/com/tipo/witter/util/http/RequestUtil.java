@@ -16,10 +16,10 @@ import java.net.URLEncoder;
 import java.util.Map;
 
 /**
- * @Description 与request有关的操作
- * @autor Tipo
- * @Date 7/27/20192:23 PM
- * @Version 1.0
+ *  与request有关的操作
+ * @author  Tipo
+ * @date 7/27/20192:23 PM
+ * @version 1.0
  */
 public class RequestUtil {
     private static Logger log = LoggerFactory.getLogger(RequestUtil.class);

@@ -17,9 +17,9 @@ import java.lang.annotation.*;
 public @interface Security {
     //权限身份,可以标多个权限
     RoleEnum[] roles() default {RoleEnum.VISITOR};
-//    //是否生成token
-//    boolean createToken () default true;
-//    //是否使用token
-//    boolean checkToken() default false;
+    //是否生成token
+    boolean createToken () default true;
+    //是否使用token
+    boolean checkToken() default false;
 
 }

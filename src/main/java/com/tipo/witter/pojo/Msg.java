@@ -10,10 +10,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 /**
- * @Description 备选方案一，单例返回中间件，暂时不开启token,错误优化，找时间取缔了,来不及了现在就开车！！
- * @Autor Tipo
- * @Date 7/27/20198:38 AM
- * @Version 1.0
+ *  备选方案一，单例返回中间件，暂时不开启token,错误优化，找时间取缔了,来不及了现在就开车！！
+ * @author  Tipo
+ * @date 7/27/20198:38 AM
+ * @version 1.0
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -87,14 +87,7 @@ public class Msg {
         result.data=null;
         return result;
     }
-    //    public static Msg fail(Integer code){
-//        if (null==result){
-//            result=new Msg();
-//        }
-//        result.setMeta(new Meta(code));
-//        result.data=null;
-//        return result;
-//    }
+
     public static Msg fail(ResultEnum resultEnum,String msg){
         if (null==result){
             result=new Msg();

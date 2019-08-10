@@ -1,10 +1,10 @@
 package com.tipo.witter.lambda;
 
 /**
- * @Description 设置md5算法
- * @Autor Tipo
- * @Date 7/27/20194:09 PM
- * @Version 1.0
+ *  设置md5算法
+ * @author  Tipo
+ * @date 7/27/20194:09 PM
+ * @version 1.0
  */
 @FunctionalInterface
 public interface Md5Set {

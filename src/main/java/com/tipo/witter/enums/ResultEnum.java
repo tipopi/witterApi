@@ -3,10 +3,10 @@ package com.tipo.witter.enums;/**
  */
 
 /**
- * @Description 简单的返回结果集
- * @Autor Tipo
- * @Date 7/26/201911:11 AM
- * @Version 1.0
+ *  简单的返回结果集
+ * @author  Tipo
+ * @date 7/26/201911:11 AM
+ * @version 1.0
  */
 public enum ResultEnum {
     //账号或密码错误

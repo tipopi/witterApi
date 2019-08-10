@@ -2,6 +2,7 @@ package com.tipo.witter.filter;
 
 
 
+import com.tipo.witter.tool.BaseStatic;
 import com.tipo.witter.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @Description 用AOP重构一下，Filter感觉有点不灵活
- * @Autor Tipo
- * @Date 7/26/20193:20 PM
- * @Version 1.2
+ *  用AOP重构一下，Filter感觉有点不灵活
+ * @author  Tipo
+ * @date 7/26/20193:20 PM
+ * @version 1.2
  */
 public class CorsFilter implements Filter {
     private Logger log = LoggerFactory.getLogger(getClass());
@@ -75,7 +76,7 @@ public class CorsFilter implements Filter {
 
         if (StringUtil.isNotEmpty(allowOrigin)) {
             //测试用* 上线去掉
-            if ("*".equals(allowOrigin)) {
+            if (BaseStatic.CORS_DEFULT.equals(allowOrigin)) {
                 response.setHeader("Access-Control-Allow-Origin",
                         currentOrigin);
             } else {

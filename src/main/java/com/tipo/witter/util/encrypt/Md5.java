@@ -6,19 +6,18 @@ import com.tipo.witter.lambda.Md5Set;
 import java.security.MessageDigest;
 
 /**
- * @Description 加盐不加盐 大厨说了算
- * @Autor Tipo
- * @Date 7/27/20193:56 PM
- * @Version 1.0
+ *  加盐不加盐 大厨说了算
+ * @author  Tipo
+ * @date 7/27/20193:56 PM
+ * @version 1.0
  */
 public class Md5 {
     private static final String SALT = "we_love_tipo";
 
     /**
-     * @Author Tipo
-     * @Description  简易版
-     * @Date 4:03 PM 7/27/2019
-     * @Param [password, useSalt]
+     * 简易版，无言
+     * @date 5:03 PM 8/10/2019
+     * @param [password, useSalt]
      * @return java.lang.String
      **/
     public static String encode(String password,boolean useSalt){
@@ -26,10 +25,9 @@ public class Md5 {
         return encode(password,salt);
     }
     /**
-     * @Author Tipo
-     * @Description 满血版
-     * @Date 4:03 PM 7/27/2019
-     * @Param [password, salt]
+     * 满血版
+     * @date 5:04 PM 8/10/2019
+     * @param [password, salt]
      * @return java.lang.String
      **/
     public static String encode(String password,String salt) {
@@ -57,10 +55,9 @@ public class Md5 {
         return hexValue.toString();
     }
     /**
-     * @Author Tipo
-     * @Description 留个函数式接口 日后好相见,这么处理意义不大，本身是个连续操作，但是我就是想用
-     * @Date 4:13 PM 7/27/2019
-     * @Param [password, salt, set]
+     * 留个函数式接口 日后好相见,这么处理意义不大，本身是个连续操作，但是我就是想用
+     * @date 5:04 PM 8/10/2019
+     * @param [password, salt, set]
      * @return java.lang.String
      **/
     public static String encode(String password, String salt, Md5Set set){
