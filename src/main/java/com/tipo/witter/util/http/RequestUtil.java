@@ -50,7 +50,7 @@ public class RequestUtil {
     /**
      * 清除cookie
      * @date 8:09 AM 8/1/2019
-     * @param []
+     * @param
      * @return void
      **/
     public static void logout(){

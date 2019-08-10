@@ -9,28 +9,17 @@ import javax.validation.constraints.NotNull;
 /**
  * @author Tipo
  * @version 1.0
- * @date 8/9/20193:43 PM
+ * @date 8/10/2019 1:31 PM
  */
-public class CommentIn {
+public class TweetIn {
     @NotNull
     @Max(1)
     @Min(0)
     private Integer userId;
-    @Min(0)
-    private Integer href;
-    @Min(0)
-    private Integer type;
     @Length(max = 255)
     private String text;
 
-    public CommentIn() {
-    }
-
-    public CommentIn(Integer userId, Integer href, Integer type, String text) {
-        this.userId = userId;
-        this.href = href;
-        this.type = type;
-        this.text = text;
+    public TweetIn() {
     }
 
     public Integer getUserId() {
@@ -39,22 +28,6 @@ public class CommentIn {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public Integer getHref() {
-        return href;
-    }
-
-    public void setHref(Integer href) {
-        this.href = href;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public String getText() {
@@ -67,10 +40,8 @@ public class CommentIn {
 
     @Override
     public String toString() {
-        return "CommentIn{" +
+        return "TweetIn{" +
                 "userId=" + userId +
-                ", href=" + href +
-                ", type=" + type +
                 ", text='" + text + '\'' +
                 '}';
     }

@@ -9,6 +9,8 @@ import com.tipo.witter.pojo.Msg;
  */
 public interface TweetService {
     Msg addTweet(Integer userId,String text);
-
+    Msg findTweetList(Integer top,Long time);
+    Msg deleteTweet(Integer id);
+    Msg findTweetByTag(Integer tagId);
 
 }

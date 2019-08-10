@@ -1,5 +1,9 @@
 package com.tipo.witter.pojo;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * @author Tipo
  * @version 1.0
@@ -7,6 +11,8 @@ package com.tipo.witter.pojo;
  */
 public class TagIn {
     private Integer id;
+    @Length(max = 10)
+    @NotNull
     private String name;
 
     public TagIn() {
