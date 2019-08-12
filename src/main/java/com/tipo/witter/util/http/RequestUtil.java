@@ -39,6 +39,13 @@ public class RequestUtil {
         request.getSession().setAttribute(BaseStatic.KEY_SESSION_NAME,name);
         request.getSession().setAttribute(BaseStatic.KEY_SESSION_ROLE,role);
     }
+    /**设置记住的认证*/
+    public static void setUserToken(String remember){
+        Cookie tokenCookie=new Cookie(BaseStatic.COOKIE_REMENBER,remember);
+        tokenCookie.setPath(BaseStatic.COOKIE_PATH);
+        HttpServletResponse response=getResponse();
+        response.addCookie(tokenCookie);
+    }
     /**将角色常用信息放入*/
     public static void loginInfo(Map<String,Object> info){
         getRequest().getSession().setAttribute(BaseStatic.KEY_SESSION_INFO,info);

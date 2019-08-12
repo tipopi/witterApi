@@ -53,7 +53,6 @@ public class SecurityAspect {
         if (roles.length>0){
             for(RoleEnum role:roles){
                 if (role== RequestUtil.getRole()){
-                    System.out.println(role);
                     return point.proceed();
                 }
             }

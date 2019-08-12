@@ -2,21 +2,24 @@ server:
   servlet:
     context-path:
   port: 8080
-#  session-timeout: 30
+  session-timeout: 30
   uri-encoding: UTF-8
 
 
 logging:
   config: classpath:log/log4j2.xml
 
-
+#jasypt加密的密匙,生产环境用命令传参设置
+jasypt:
+  encryptor:
+    password: 61EC6F20F7EEA88036505D887AF14BAB
 
 spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://10.16.78.26:4433;sendStringParametersAsUnicode=true
-    username: intern_test # User
-    password: 123456 # PWD
+    url: ENC(xRnehQLt8IfrBaK5W+KeeWm4ZmkNM3vVlYp8u70g7ZuAjndMjZFonfp3+JD4LcbKBYd8DrhuMIj6Hj2zALTcYOczdWMF+QItNr5LaGBCraQ=)
+    username: ENC(Cn645EeW/xbh2KvWoCFjbBUHrYNdEt0D) # User
+    password: ENC(r8QNIUmOGQ9vag8z/6AvIQ==) # PWD
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       maximum-pool-size: 5
@@ -26,7 +29,6 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: "SELECT 1"
-
 
 
 mybatis:

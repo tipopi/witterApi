@@ -23,10 +23,11 @@ public class BaseStatic {
     public static final String BOOLEN_FALSE="false";
     public static final String COOKIE_NAME="username";
     public static final String COOKIE_ACCOUNT="account";
+    public static final String COOKIE_REMENBER="remember";
     public static final String COOKIE_PATH="/";
     public static final String MD5_SALT="PILAOBAN";
     public static final String CORS_DEFULT="*";
-
+    public static final String ADMIN_NAME="Tipo";
     /**分页每页总条数*/
     public static final Integer ROWS  = 25;
 }

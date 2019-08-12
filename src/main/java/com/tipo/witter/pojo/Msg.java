@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tipo.witter.util.http.RequestUtil;
 
 
 /**
@@ -120,19 +121,19 @@ public class Msg {
     public static class Meta{
         private Integer code;
         private String message;
-//        private String token;
+        private String token;
 
-        //        public String getToken() {
-//            return token;
-//        }
+        public String getToken() {
+            return token;
+        }
         Meta(Integer code){
             this.code=code;
-//            this.token= RequestUtil.getToken();
+            this.token= RequestUtil.getToken();
         }
         Meta(Integer code,String msg){
             this.code=code;
             this.message=msg;
-//            this.token= RequestUtil.getToken();
+            this.token= RequestUtil.getToken();
         }
         public Integer getCode() {
             return code;
