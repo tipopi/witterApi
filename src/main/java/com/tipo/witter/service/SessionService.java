@@ -12,4 +12,5 @@ import java.io.UnsupportedEncodingException;
  */
 public interface SessionService {
     Msg addSession(Account account) throws UnsupportedEncodingException;
+    Msg deleteSession();
 }

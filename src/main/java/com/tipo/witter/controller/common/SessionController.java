@@ -6,6 +6,7 @@ import com.tipo.witter.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,12 +22,17 @@ import java.io.UnsupportedEncodingException;
 public class SessionController {
     @Autowired
     private SessionService service;
+
     @PostMapping("addSession")
     public Msg addSession(@RequestBody @Validated Account account, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()){
             return Msg.fail();
         }
         return service.addSession(account);
+    }
+    @GetMapping("deleteSession")
+    public Msg deleteSession(){
+        return service.deleteSession();
     }
 
 }

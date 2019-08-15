@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -14,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 //@PropertySource("classpath:properties/admin.properties")
 public class WitterApplicationTests {
 	@Autowired
-	StringEncryptor encryptor;
+	private StringEncryptor encryptor;
 	@Value("${spring.datasource.url}")
 	private String url;
 	@Value("${admin.user}")
