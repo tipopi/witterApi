@@ -1,5 +1,6 @@
 package com.tipo.witter.service.impl;
 
+import com.tipo.witter.enums.ResultEnum;
 import com.tipo.witter.enums.RoleEnum;
 import com.tipo.witter.pojo.Account;
 import com.tipo.witter.pojo.Msg;
@@ -33,7 +34,7 @@ public class SessionServiceImpl implements SessionService {
             RequestUtil.login(account.getUsername(), BaseStatic.ADMIN_NAME, RoleEnum.ADMIN);
             return Msg.success();
         }
-        return Msg.fail();
+        return Msg.fail(ResultEnum.PARAM_NOT_SUIT,"用户名或密码错误");
     }
 
     @Override
