@@ -24,7 +24,6 @@ public class WitterApplication {
 	/**
 	 * 配置跨域,满足浏览器同源策略
 	 * @date 8:11 AM 8/1/2019
-	 * @param
 	 * @return org.springframework.boot.web.servlet.FilterRegistrationBean
 	 **/
 	@Bean

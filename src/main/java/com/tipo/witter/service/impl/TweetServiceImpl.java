@@ -39,7 +39,15 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
-    public Msg findTweetByTag(Integer tagId) {
-        return Msg.success(mapper.findTweetByTag(tagId));
+    public Msg findTweetByTag(Integer tagId,Integer top,Long time) {
+        return Msg.success(mapper.findTweetByTag(top,new Timestamp(time),tagId));
+    }
+
+    @Override
+    public Msg addPower(Integer id, Integer power) {
+        if (mapper.addPower(id,power)==1){
+            return Msg.success();
+        }
+        return Msg.fail();
     }
 }

@@ -25,7 +25,7 @@ public class TweetServiecTest {
     @Test
     public void addTweet(){
         for (int i=8;i<12;i++){
-            service.addTweet(0,"第"+i+"条");
+            service.addTweet(1,"撒大苏打实打实"+i);
         }
     }
     @Test
@@ -37,7 +37,7 @@ public class TweetServiecTest {
     }
     @Test
     public void findByTag(){
-        System.out.println(mapper.findTweetByTag(1));
+
     }
 
 

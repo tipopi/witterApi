@@ -1,10 +1,10 @@
 package com.tipo.witter.util.code;
 
 import com.tipo.witter.tool.BaseStatic;
-import com.sun.jmx.snmp.Timestamp;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 /**

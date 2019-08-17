@@ -15,5 +15,6 @@ public interface TweetMapper {
     Integer addTweet(@Param("userId")Integer userId,@Param("text")String text );
     List<TweetResult> findTweetList(@Param("TOP") Integer top, @Param("createTime")Timestamp createTime);
     Integer deleteTweet(Integer id);
-    List<TweetResult> findTweetByTag(Integer tagId);
+    List<TweetResult> findTweetByTag(@Param("TOP") Integer top, @Param("createTime")Timestamp createTime,@Param("tag")Integer tag);
+    Integer addPower(@Param("id")Integer id,@Param("power")Integer power);
 }

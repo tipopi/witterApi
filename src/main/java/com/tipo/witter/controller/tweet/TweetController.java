@@ -43,7 +43,7 @@ public class TweetController {
     public Msg findGlide(@RequestParam(value = "time") Long time){
         return service.findTweetList(IntStatic.TWEET_GLIDE_COUNT,time);
     }
-    @DeleteMapping("tweet")
+    @DeleteMapping("delete")
     public Msg deleteTweet(@RequestBody String json ) throws IOException {
         JsonNode node=objectMapper.readTree(json);
         Integer id=node.get("id").asInt();
@@ -53,10 +53,17 @@ public class TweetController {
         return service.deleteTweet(id);
     }
     @GetMapping("findByTag")
-    public Msg findByTag(@RequestParam("tagId") Integer tagId){
+    public Msg findByTag(@RequestParam("tagId") Integer tagId,@RequestParam(value = "time") Long time){
         if (tagId<0){
             return Msg.fail();
         }
-        return service.findTweetByTag(tagId);
+        return service.findTweetByTag(tagId,IntStatic.TWEET_FIRST_COUNT,time);
+    }
+    @PutMapping("addPower")
+    public Msg addPower(@RequestBody String json) throws IOException {
+        JsonNode node=objectMapper.readTree(json);
+        Integer id=node.get("id").asInt();
+        Integer power=node.get("power").asInt();
+        return service.addPower(id,power);
     }
 }

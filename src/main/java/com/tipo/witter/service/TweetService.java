@@ -11,6 +11,6 @@ public interface TweetService {
     Msg addTweet(Integer userId,String text);
     Msg findTweetList(Integer top,Long time);
     Msg deleteTweet(Integer id);
-    Msg findTweetByTag(Integer tagId);
-
+    Msg findTweetByTag(Integer tagId,Integer top,Long time);
+    Msg addPower(Integer id,Integer power);
 }
