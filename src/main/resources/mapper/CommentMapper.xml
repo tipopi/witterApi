@@ -9,7 +9,7 @@
         <result column="text" jdbcType="VARCHAR" property="text"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
-    <insert id="addComment" parameterType="CommentIn">
+    <insert id="addComment" useGeneratedKeys="true" keyProperty="id" parameterType="CommentIn">
         INSERT INTO Intern_test.blank_tl2p.comment
         (user_id, href, type, text) VALUES (#{userId},#{href},#{type},#{text})
     </insert>
