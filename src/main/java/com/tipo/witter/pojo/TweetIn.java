@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
  * @date 8/10/2019 1:31 PM
  */
 public class TweetIn {
+    private Integer id;
     @NotNull
     @Max(1)
     @Min(0)
@@ -20,6 +21,14 @@ public class TweetIn {
     private String text;
 
     public TweetIn() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getUserId() {

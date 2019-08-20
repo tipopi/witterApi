@@ -33,7 +33,7 @@ public class TweetController {
         if (binding.hasErrors()){
             return Msg.fail();
         }
-        return service.addTweet(in.getUserId(),in.getText());
+        return service.addTweet(in);
     }
     @GetMapping("findList")
     public Msg findList(@RequestParam(value = "time") Long time){

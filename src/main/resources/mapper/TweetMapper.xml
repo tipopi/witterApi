@@ -10,7 +10,7 @@
         <result column="power" jdbcType="INTEGER" property="power"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
-    <insert id="addTweet" >
+    <insert id="addTweet" useGeneratedKeys="true" keyProperty="id" parameterType="TweetIn" >
         INSERT INTO Intern_test.blank_tl2p.Tweet (user_id, text)
         VALUES (#{userId},#{text})
     </insert>

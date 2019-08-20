@@ -20,9 +20,8 @@ public class CommentServiceImpl implements CommentService{
     private CommentMapper mapper;
     @Override
     public Msg addComment(CommentIn in) {
-        Integer id = mapper.addComment(in);
-        if (id != null){
-            return Msg.success(id);
+        if (mapper.addComment(in)== 1){
+            return Msg.success(in.getId());
         }
         return Msg.fail();
     }

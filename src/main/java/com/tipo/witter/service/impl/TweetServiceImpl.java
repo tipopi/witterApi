@@ -2,6 +2,7 @@ package com.tipo.witter.service.impl;
 
 import com.tipo.witter.mapper.TweetMapper;
 import com.tipo.witter.pojo.Msg;
+import com.tipo.witter.pojo.TweetIn;
 import com.tipo.witter.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,9 @@ public class TweetServiceImpl implements TweetService {
     @Autowired
     private TweetMapper mapper;
     @Override
-    public Msg addTweet(Integer userId, String text) {
-        if (mapper.addTweet(userId,text)==1){
-            return Msg.success();
+    public Msg addTweet(TweetIn in) {
+        if (mapper.addTweet(in)==1){
+            return Msg.success(in.getId());
         }
         return Msg.fail();
     }
