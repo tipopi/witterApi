@@ -6,6 +6,9 @@ package com.tipo.witter.exception;
  * @date 7/30/20194:10 PM
  */
 public class RollBackException extends RuntimeException{
+
+    private static final long serialVersionUID = -4749954311643887861L;
+
     public RollBackException(String message){
         super(message);
     }

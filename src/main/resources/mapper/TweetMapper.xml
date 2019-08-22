@@ -31,6 +31,7 @@
         status=1
         WHERE id=#{VALUE}
     </update>
+
     <select id="findTweetByTag" resultMap="tweetMap">
         SELECT top ${TOP} tw.id,tw.user_id,tw.text,tw.power,tw.create_time
         FROM Intern_test.blank_tl2p.tag_map AS tm ,Intern_test.blank_tl2p.tweet AS tw

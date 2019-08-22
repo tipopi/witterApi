@@ -21,7 +21,6 @@ public class CodeUtil {
         return new Timestamp(System.currentTimeMillis()).toString();
     }
     public static String getToken() {
-        String token =  ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader(BaseStatic.KEY_SESSION_TOKEN);
-        return token;
+        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader(BaseStatic.KEY_SESSION_TOKEN);
     }
 }

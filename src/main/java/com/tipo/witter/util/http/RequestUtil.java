@@ -57,8 +57,6 @@ public class RequestUtil {
     /**
      * 清除cookie
      * @date 8:09 AM 8/1/2019
-     * @param
-     * @return void
      **/
     public static void logout(){
         HttpServletRequest request=getRequest();
@@ -76,7 +74,6 @@ public class RequestUtil {
     /**
      * 从session中拿权限
      * @date 8:10 AM 8/1/2019
-     * @param []
      * @return com.template.enums.RoleEnum
      **/
     public static RoleEnum getRole(){

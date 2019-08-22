@@ -1,6 +1,4 @@
-package com.tipo.witter.enums;/**
- * Created by tl2p on 7/26/2019.
- */
+package com.tipo.witter.enums;
 
 /**
  *  简单的返回结果集
@@ -31,7 +29,7 @@ public enum ResultEnum {
 
     private Integer code;
 
-    private ResultEnum(Integer code) {
+    ResultEnum(Integer code) {
         this.code = code;
     }
 

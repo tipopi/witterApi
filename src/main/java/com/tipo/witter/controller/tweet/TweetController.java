@@ -2,6 +2,8 @@ package com.tipo.witter.controller.tweet;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tipo.witter.annotation.Security;
+import com.tipo.witter.enums.RoleEnum;
 import com.tipo.witter.pojo.Msg;
 import com.tipo.witter.pojo.TweetIn;
 import com.tipo.witter.service.TweetService;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.Map;
 
-/**
+/**推文
  * @author Tipo
  * @version 1.0
  * @date 8/9/20199:45 AM
@@ -43,10 +45,9 @@ public class TweetController {
     public Msg findGlide(@RequestParam(value = "time") Long time){
         return service.findTweetList(IntStatic.TWEET_GLIDE_COUNT,time);
     }
+    @Security(roles = {RoleEnum.ADMIN},createToken = true,checkToken =true )
     @DeleteMapping("delete")
-    public Msg deleteTweet(@RequestBody String json ) throws IOException {
-        JsonNode node=objectMapper.readTree(json);
-        Integer id=node.get("id").asInt();
+    public Msg deleteTweet(@RequestParam("id") Integer id ) throws IOException {
         if (id<0){
             return Msg.fail();
         }

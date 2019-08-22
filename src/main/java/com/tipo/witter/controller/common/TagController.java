@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/**标签是推文和文章通用的
  * @author Tipo
  * @version 1.0
  * @date 8/10/2019 2:56 PM

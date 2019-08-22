@@ -18,4 +18,5 @@ public interface TagMapper {
     Integer findTagByName(String name);
     List<TagCount> findTagCount(Integer type);
     List<String> findTagByHref(Integer href);
+    Integer deleteMap(@Param("href")Integer href,@Param("type")Integer type);
 }

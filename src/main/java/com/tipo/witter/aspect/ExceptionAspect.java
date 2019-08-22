@@ -21,10 +21,8 @@ import javax.validation.ValidationException;
 
 /**
  * @author Tipo
- * @Project: examdemo
- * @Package:com.exam.aspect
  * @date 2018/9/18 16:25
- * @description 控制层异常处理，找不到控制器不属于这里，所以不是全局的，只能处理业务错误
+ * 控制层异常处理，找不到控制器不属于这里，所以不是全局的，只能处理业务错误
  **/
 @ControllerAdvice
 @ResponseBody

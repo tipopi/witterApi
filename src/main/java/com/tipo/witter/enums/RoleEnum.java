@@ -10,5 +10,7 @@ public enum RoleEnum {
     //管理员
     ADMIN,
     //游客
-    VISITOR
+    VISITOR,
+    //跳过权限的登录用户
+    LOGIN
 }

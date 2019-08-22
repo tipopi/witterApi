@@ -21,10 +21,16 @@
         FROM Intern_test.blank_tl2p.tag
         WHERE name=#{VALUE }
     </select>
+    <update id="deleteMap" >
+        UPDATE Intern_test.blank_tl2p.tag_map
+        SET
+        status=1
+        WHERE href=#{href} AND type=#{type}
+    </update>
     <select id="findTagCount" resultType="TagCount">
         SELECT t.id,t.name,COUNT(t.name)AS tagCount
         FROM Intern_test.blank_tl2p.tag AS t ,Intern_test.blank_tl2p.tag_map AS tm
-        WHERE tm.type=#{type} AND t.id=tm.tag_id
+        WHERE tm.type=#{type} AND t.id=tm.tag_id AND tm.status=0
         GROUP BY t.name,t.id
         ORDER BY COUNT (t.name) DESC
     </select>

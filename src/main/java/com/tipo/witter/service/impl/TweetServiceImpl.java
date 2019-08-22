@@ -1,5 +1,6 @@
 package com.tipo.witter.service.impl;
 
+import com.tipo.witter.mapper.TagMapper;
 import com.tipo.witter.mapper.TweetMapper;
 import com.tipo.witter.pojo.Msg;
 import com.tipo.witter.pojo.TweetIn;
@@ -18,6 +19,8 @@ import java.sql.Timestamp;
 public class TweetServiceImpl implements TweetService {
     @Autowired
     private TweetMapper mapper;
+    @Autowired
+    private TagMapper tagMapper;
     @Override
     public Msg addTweet(TweetIn in) {
         if (mapper.addTweet(in)==1){
@@ -33,6 +36,7 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public Msg deleteTweet(Integer id) {
+        tagMapper.deleteMap(id,0);
         if (mapper.deleteTweet(id)==1){
             return Msg.success();
         }

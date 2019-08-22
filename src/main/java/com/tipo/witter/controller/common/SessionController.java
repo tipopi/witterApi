@@ -1,5 +1,7 @@
 package com.tipo.witter.controller.common;
 
+import com.tipo.witter.annotation.Security;
+import com.tipo.witter.enums.RoleEnum;
 import com.tipo.witter.pojo.Account;
 import com.tipo.witter.pojo.Msg;
 import com.tipo.witter.service.SessionService;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
 
-/**
+/**登录和注销
  * @author Tipo
  * @version 1.0
  * @date 2019/8/12 15:02
@@ -22,7 +24,7 @@ import java.io.UnsupportedEncodingException;
 public class SessionController {
     @Autowired
     private SessionService service;
-
+    @Security(roles = {RoleEnum.LOGIN},createToken = true)
     @PostMapping("addSession")
     public Msg addSession(@RequestBody @Validated Account account, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()){

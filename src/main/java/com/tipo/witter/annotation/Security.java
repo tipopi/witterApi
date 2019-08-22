@@ -18,7 +18,7 @@ public @interface Security {
     //权限身份,可以标多个权限
     RoleEnum[] roles() default {RoleEnum.VISITOR};
     //是否生成token
-    boolean createToken () default true;
+    boolean createToken () default false;
     //是否使用token
     boolean checkToken() default false;
 

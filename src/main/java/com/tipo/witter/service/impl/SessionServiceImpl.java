@@ -30,7 +30,7 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public Msg addSession(Account account) throws UnsupportedEncodingException {
-        if (encryptor.decrypt(user).equals(account.getUsername())||encryptor.decrypt(pass).equals(account.getPassword())){
+        if (encryptor.decrypt(user).equals(account.getUsername())&&encryptor.decrypt(pass).equals(account.getPassword())){
             RequestUtil.login(account.getUsername(), BaseStatic.ADMIN_NAME, RoleEnum.ADMIN);
             return Msg.success();
         }
