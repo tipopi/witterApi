@@ -3,12 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tipo.witter.mapper.TagMapper">
-    <insert id="addTag" useGeneratedKeys="true" keyProperty="id" parameterType="TagIn">
-        INSERT INTO Intern_test.blank_tl2p.tag
+    <insert id="addTag" useGeneratedKeys="true" keyProperty="id" parameterType="com.tipo.witter.pojo.TweetIn">
+        INSERT INTO witter.tag
         (name) VALUES (#{name})
     </insert>
     <insert id="addMap" parameterType="java.util.List">
-        INSERT INTO Intern_test.blank_tl2p.tag_map
+        INSERT INTO witter.tag_map
         (href, tag_id, type) VALUES
         <foreach collection="list" item="item" separator="," index="index">
             (
@@ -17,26 +17,26 @@
         </foreach>
     </insert>
     <select id="findTagByName" resultType="java.lang.Integer">
-        SELECT id
-        FROM Intern_test.blank_tl2p.tag
+        SELECT tag_id
+        FROM witter.tag
         WHERE name=#{VALUE }
     </select>
     <update id="deleteMap" >
-        UPDATE Intern_test.blank_tl2p.tag_map
+        UPDATE witter.tag_map
         SET
         status=1
         WHERE href=#{href} AND type=#{type}
     </update>
-    <select id="findTagCount" resultType="TagCount">
-        SELECT t.id,t.name,COUNT(t.name)AS tagCount
-        FROM Intern_test.blank_tl2p.tag AS t ,Intern_test.blank_tl2p.tag_map AS tm
-        WHERE tm.type=#{type} AND t.id=tm.tag_id AND tm.status=0
-        GROUP BY t.name,t.id
-        ORDER BY COUNT (t.name) DESC
+    <select id="findTagCount" resultType="com.tipo.witter.pojo.TagCount">
+        SELECT t.tag_id,t.name,COUNT(t.name)AS tagCount
+        FROM witter.tag AS t ,witter.tag_map AS tm
+        WHERE tm.type=#{type} AND t.tag_id=tm.tag_id AND tm.status=0
+        GROUP BY t.name,t.tag_id
+        ORDER BY COUNT(t.name) DESC
     </select>
     <select id="findTagByHref" resultType="java.lang.String">
         SELECT t.name
-        FROM Intern_test.blank_tl2p.tag_map AS tm ,Intern_test.blank_tl2p.tag AS t
-        WHERE tm.href=#{VALUE } AND tm.tag_id=t.id
+        FROM witter.tag_map AS tm ,witter.tag AS t
+        WHERE tm.href=#{VALUE } AND tm.tag_id=t.tag_id
     </select>
 </mapper>

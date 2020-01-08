@@ -1,6 +1,7 @@
 package com.tipo.witter.pojo;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author Tipo
@@ -12,7 +13,7 @@ public class TweetResult {
     private Integer userId;
     private String text;
     private Integer power;
-    private Timestamp createTime;
+    private Date createTime;
 
     public TweetResult() {
     }
@@ -49,11 +50,11 @@ public class TweetResult {
         this.power = power;
     }
 
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

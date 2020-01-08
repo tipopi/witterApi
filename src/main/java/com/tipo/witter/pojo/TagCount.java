@@ -6,19 +6,19 @@ package com.tipo.witter.pojo;
  * @date 8/9/20194:12 PM
  */
 public class TagCount {
-    private Integer id;
+    private Integer tagId;
     private String name;
     private Integer tagCount;
 
     public TagCount() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getTagId() {
+        return tagId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTagId(Integer tagId) {
+        this.tagId = tagId;
     }
 
     public String getName() {
@@ -40,7 +40,7 @@ public class TagCount {
     @Override
     public String toString() {
         return "TagCount{" +
-                "id=" + id +
+                "tagId=" + tagId +
                 ", name='" + name + '\'' +
                 ", tagCount=" + tagCount +
                 '}';

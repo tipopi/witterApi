@@ -3,26 +3,26 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tipo.witter.mapper.CommentMapper">
-    <resultMap id="commentMap" type="commentResult">
-        <result column="id" jdbcType="INTEGER" property="id"/>
+    <resultMap id="commentMap" type="com.tipo.witter.pojo.CommentResult">
+        <result column="comment_id" jdbcType="INTEGER" property="id"/>
         <result column="user_id" jdbcType="INTEGER" property="userId"/>
         <result column="text" jdbcType="VARCHAR" property="text"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
-    <insert id="addComment" useGeneratedKeys="true" keyProperty="id" parameterType="CommentIn">
-        INSERT INTO Intern_test.blank_tl2p.comment
+    <insert id="addComment" useGeneratedKeys="true" keyProperty="id" parameterType="com.tipo.witter.pojo.CommentIn">
+        INSERT INTO witter.comment
         (user_id, href, type, text) VALUES (#{userId},#{href},#{type},#{text})
     </insert>
     <select id="findComment" resultMap="commentMap">
-        SELECT  id,user_id,text,create_time
-        FROM Intern_test.blank_tl2p.comment
+        SELECT  comment_id,user_id,text,create_time
+        FROM witter.comment
         WHERE href=#{href} AND type=#{type} AND comment.status=0;
     </select>
     <update id="deleteComment">
-        UPDATE  Intern_test.blank_tl2p.comment
+        UPDATE  witter.comment
         SET
         status=1
-        WHERE id=#{VALUE }
+        WHERE comment_id=#{VALUE }
     </update>
 
 </mapper>

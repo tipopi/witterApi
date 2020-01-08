@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.Timestamp;
+import java.util.Date;
+
 
 /**
  * @author Tipo
@@ -30,7 +31,7 @@ public class TweetServiecTest {
     }
     @Test
     public void findAll(){
-        for (TweetResult result:mapper.findTweetList(10,new Timestamp(System.currentTimeMillis()))){
+        for (TweetResult result:mapper.findTweetList(10,new Date(System.currentTimeMillis()))){
             System.out.println(result);
         }
 

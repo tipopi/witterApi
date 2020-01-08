@@ -16,19 +16,34 @@ jasypt:
 
 spring:
   datasource:
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: ENC(xRnehQLt8IfrBaK5W+KeeWm4ZmkNM3vVlYp8u70g7ZuAjndMjZFonfp3+JD4LcbKBYd8DrhuMIj6Hj2zALTcYOczdWMF+QItNr5LaGBCraQ=)
-    username: ENC(Cn645EeW/xbh2KvWoCFjbBUHrYNdEt0D) # User
-    password: ENC(r8QNIUmOGQ9vag8z/6AvIQ==) # PWD
     type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      maximum-pool-size: 5
-      auto-commit: false
-      idle-timeout: 30000
-      pool-name: HikariConnectionPool
-      max-lifetime: 1800000
-      connection-timeout: 30000
-      connection-test-query: "SELECT 1"
+    primary:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/witter?serverTimezone=UTC&useSSL=false
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+      hikariz:
+        maximum-pool-size: 5
+        auto-commit: false
+        idle-timeout: 30000
+        pool-name: HikariConnectionPool
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: "SELECT 1"
+    secondary:
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      url: ENC(xRnehQLt8IfrBaK5W+KeeWm4ZmkNM3vVlYp8u70g7ZuAjndMjZFonfp3+JD4LcbKBYd8DrhuMIj6Hj2zALTcYOczdWMF+QItNr5LaGBCraQ=)
+      username: ENC(Cn645EeW/xbh2KvWoCFjbBUHrYNdEt0D) # User
+      password: ENC(r8QNIUmOGQ9vag8z/6AvIQ==) # PWD
+      hikariz:
+        maximum-pool-size: 5
+        auto-commit: false
+        idle-timeout: 30000
+        pool-name: HikariConnectionPool
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: "SELECT 1"
+
 
 
 mybatis:

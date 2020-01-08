@@ -7,8 +7,8 @@ import com.tipo.witter.pojo.TweetIn;
 import com.tipo.witter.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author Tipo
@@ -31,7 +31,7 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public Msg findTweetList(Integer top, Long time) {
-        return Msg.success(mapper.findTweetList(top,new Timestamp(time))) ;
+        return Msg.success(mapper.findTweetList(top,new Date(time))) ;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public Msg findTweetByTag(Integer tagId,Integer top,Long time) {
-        return Msg.success(mapper.findTweetByTag(top,new Timestamp(time),tagId));
+        return Msg.success(mapper.findTweetByTag(top,new Date(time),tagId));
     }
 
     @Override
