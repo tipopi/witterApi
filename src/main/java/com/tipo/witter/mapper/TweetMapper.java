@@ -15,8 +15,8 @@ import java.util.List;
  */
 public interface TweetMapper {
     Integer addTweet(TweetIn in);
-    List<TweetResult> findTweetList(@Param("TOP") Integer top, @Param("createTime") Date createTime);
+    List<TweetResult> findTweetList(@Param("size") Integer size, @Param("createTime") Date createTime,@Param("offset")Integer offset);
     Integer deleteTweet(Integer id);
-    List<TweetResult> findTweetByTag(@Param("TOP") Integer top, @Param("createTime")Date createTime,@Param("tag")Integer tag);
+    List<TweetResult> findTweetByTag(@Param("size") Integer size, @Param("createTime")Date createTime,@Param("tag")Integer tag,@Param("offset")Integer offset);
     Integer addPower(@Param("id")Integer id,@Param("power")Integer power);
 }

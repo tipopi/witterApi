@@ -3,23 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tipo.witter.mapper.TagMapper">
-    <insert id="addTag" useGeneratedKeys="true" keyProperty="id" parameterType="com.tipo.witter.pojo.TweetIn">
+    <insert id="addTag" useGeneratedKeys="true" keyProperty="id" parameterType="com.tipo.witter.pojo.TagIn">
         INSERT INTO witter.tag
-        (name) VALUES (#{name})
+        (name,type) VALUES (#{name},#{type})
     </insert>
     <insert id="addMap" parameterType="java.util.List">
         INSERT INTO witter.tag_map
         (href, tag_id, type) VALUES
         <foreach collection="list" item="item" separator="," index="index">
-            (
-            #{item.href},#{item.tagId},#{item.type}
-            )
+            (#{item.href},#{item.tagId},#{item.type})
         </foreach>
     </insert>
     <select id="findTagByName" resultType="java.lang.Integer">
         SELECT tag_id
         FROM witter.tag
-        WHERE name=#{VALUE }
+        WHERE name=#{name} AND type=#{type} AND status=0
     </select>
     <update id="deleteMap" >
         UPDATE witter.tag_map
@@ -27,16 +25,22 @@
         status=1
         WHERE href=#{href} AND type=#{type}
     </update>
+    <update id="deleteTag" >
+        UPDATE witter.tag
+        SET
+        status=1
+        WHERE tag_id=#{value}
+    </update>
     <select id="findTagCount" resultType="com.tipo.witter.pojo.TagCount">
-        SELECT t.tag_id,t.name,COUNT(t.name)AS tagCount
+        SELECT t.tag_id AS tagId,t.name,COUNT(t.name)AS tagCount
         FROM witter.tag AS t ,witter.tag_map AS tm
-        WHERE tm.type=#{type} AND t.tag_id=tm.tag_id AND tm.status=0
+        WHERE t.type=#{type} AND t.tag_id=tm.tag_id AND t.status=0 AND tm.status=0
         GROUP BY t.name,t.tag_id
         ORDER BY COUNT(t.name) DESC
     </select>
-    <select id="findTagByHref" resultType="java.lang.String">
-        SELECT t.name
+    <select id="findTagByHref" resultType="com.tipo.witter.pojo.TagItem">
+        SELECT t.name ,t.tag_id
         FROM witter.tag_map AS tm ,witter.tag AS t
-        WHERE tm.href=#{VALUE } AND tm.tag_id=t.tag_id
+        WHERE tm.href=#{href} AND tm.type=#{type} AND tm.tag_id=t.tag_id
     </select>
 </mapper>

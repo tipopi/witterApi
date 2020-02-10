@@ -14,8 +14,23 @@ public class TagIn {
     @Length(max = 10)
     @NotNull
     private String name;
+    @NotNull
+    private Integer type;
 
     public TagIn() {
+    }
+
+    public TagIn(@Length(max = 10) @NotNull String name, @NotNull Integer type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Integer getId() {
@@ -39,6 +54,7 @@ public class TagIn {
         return "TagIn{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", type=" + type +
                 '}';
     }
 }

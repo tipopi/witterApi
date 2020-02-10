@@ -4,11 +4,13 @@ import com.tipo.witter.mapper.TagMapper;
 import com.tipo.witter.mapper.TweetMapper;
 import com.tipo.witter.pojo.Msg;
 import com.tipo.witter.pojo.TweetIn;
+import com.tipo.witter.pojo.TweetResult;
 import com.tipo.witter.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Tipo
@@ -30,8 +32,8 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
-    public Msg findTweetList(Integer top, Long time) {
-        return Msg.success(mapper.findTweetList(top,new Date(time))) ;
+    public Msg findTweetList(Integer top, Long time,Integer offset) {
+        return Msg.success(mapper.findTweetList(top,new Date(time),offset));
     }
 
     @Override
@@ -44,8 +46,8 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
-    public Msg findTweetByTag(Integer tagId,Integer top,Long time) {
-        return Msg.success(mapper.findTweetByTag(top,new Date(time),tagId));
+    public Msg findTweetByTag(Integer tagId,Integer top,Long time,Integer offset) {
+        return Msg.success(mapper.findTweetByTag(top,new Date(time),tagId,offset));
     }
 
     @Override

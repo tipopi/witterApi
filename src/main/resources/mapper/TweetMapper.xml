@@ -11,21 +11,16 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
     <insert id="addTweet" useGeneratedKeys="true" keyProperty="id" parameterType="com.tipo.witter.pojo.TweetIn" >
-        INSERT INTO witter.Tweet (user_id, text,create_time)
-        VALUES (#{userId},#{text},NOW())
+        INSERT INTO witter.Tweet (user_id, text)
+        VALUES (#{userId},#{text})
     </insert>
     <select id="findTweetList" resultMap="tweetMap">
         SELECT  tweet_id,user_id,text,power,create_time
         FROM witter.Tweet
         WHERE create_time &lt;= #{createTime} AND status=0
         ORDER BY create_time DESC
-        LIMIT ${TOP}
+        LIMIT #{offset},#{size}
     </select>
-    <!--<select id="findTweetById" resultType="">-->
-        <!--SELECT text-->
-        <!--FROM witter.Tweet-->
-        <!--WHERE-->
-    <!--</select>-->
     <update id="deleteTweet" >
         UPDATE witter.Tweet
         SET
@@ -36,9 +31,9 @@
     <select id="findTweetByTag" resultMap="tweetMap">
         SELECT tw.tweet_id,tw.user_id,tw.text,tw.power,tw.create_time
         FROM witter.tag_map AS tm ,witter.tweet AS tw
-        WHERE tm.tag_id=#{tag} AND tw.tweet_id=tm.href AND tw.status=0 AND tw.create_time &lt;= #{createTime}
+        WHERE tm.tag_id=#{tag} AND tw.tweet_id=tm.href AND tm.type=0 AND tw.status=0 AND tw.create_time &lt;= #{createTime}
         ORDER BY tw.create_time DESC
-        LIMIT ${TOP}
+        LIMIT #{offset},#{size}
     </select>
     <update id="addPower">
         UPDATE witter.tweet

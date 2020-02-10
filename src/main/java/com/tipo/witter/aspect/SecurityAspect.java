@@ -51,7 +51,7 @@ public class SecurityAspect {
         }
         if (security.createToken()) {
             RequestUtil.createToken(CodeUtil.createToken());
-            log.info("createtoken:" + RequestUtil.getToken());
+            log.info("createToken:" + RequestUtil.getToken());
         }
         RoleEnum[] roles = security.roles();
         if (roles.length > 0) {

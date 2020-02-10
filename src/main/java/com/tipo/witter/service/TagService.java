@@ -14,5 +14,6 @@ public interface TagService {
     Msg addTag(TagIn in);
     Msg addMap(List<Integer> tags ,Integer href,Integer type);
     Msg findTagCount(Integer type);
-    Msg findByHref(Integer href);
+    Msg findByHref(Integer href,Integer type);
+    Msg deleteTag(Integer tagId);
 }

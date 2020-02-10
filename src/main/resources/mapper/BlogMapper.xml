@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tipo.witter.mapper.BlogMapper">
+    <resultMap id="blogMap" type="com.tipo.witter.pojo.BlogItem">
+        <id column="blog_id" property="blogId"/>
+        <result column="title" property="title"/>
+        <result column="content_id" property="contentId"/>
+        <result column="description" property="description"/>
+        <result column="browse" property="browse"/>
+        <result column="create_time" property="createTime"/>
+        <result column="content" property="content"/>
+        <collection property="tags" ofType="com.tipo.witter.pojo.TagItem" javaType="List">
+            <result column="tag_id" property="tagId"/>
+            <result column="name" property="name" />
+        </collection>
+    </resultMap>
+    <select id="findList" resultMap="blogMap">
+        SELECT  b.blog_id,b.title,b.content_id,b.description,b.browse,b.create_time,t.name,t.tag_id
+        FROM witter.Blog AS b LEFT JOIN witter.tag_map AS tm ON tm.href=b.blog_id AND tm.type=1 LEFT JOIN witter.tag AS t ON tm.tag_id=t.tag_id
+        WHERE b.create_time &lt;= #{createTime} AND b.status=0
+        ORDER BY b.create_time DESC
+        LIMIT #{offset},#{size}
+    </select>
+
+    <select id="findListByTag" resultMap="blogMap">
+        SELECT  b.blog_id,b.title,b.content_id,b.description,b.browse,b.create_time,t.name,t.tag_id
+        FROM witter.Blog AS b LEFT JOIN witter.tag_map AS tm ON tm.href=b.blog_id AND tm.type=1 LEFT JOIN witter.tag AS t ON tm.tag_id=t.tag_id
+        WHERE b.create_time &lt;= #{createTime} AND b.status=0 AND t.tag_id=#{tagId}
+        ORDER BY b.create_time DESC
+        LIMIT #{offset},#{size}
+    </select>
+    <select id="getBlog" resultMap="blogMap">
+        SELECT  b.blog_id,b.title,b.content_id,b.description,b.browse,b.create_time,t.name,t.tag_id,bc.content
+        FROM witter.Blog AS b LEFT JOIN witter.tag_map AS tm ON tm.href=b.blog_id AND tm.type=1 LEFT JOIN witter.tag AS t ON tm.tag_id=t.tag_id
+        LEFT JOIN witter.blog_content AS bc ON b.content_id=bc.content_id
+        WHERE b.blog_id=#{blogId} AND b.status=0
+    </select>
+
+    <select id="getContent" resultType="java.lang.String">
+        SELECT content from witter.blog_content AS c ,witter.blog AS b
+        WHERE b.blog_id=#{blogId} AND b.content_id=c.content_id
+    </select>
+    <insert id="addBlog" useGeneratedKeys="true" keyProperty="blogId" parameterType="com.tipo.witter.pojo.BlogIn">
+        INSERT INTO witter.blog (title,content_id,description) VALUES (#{title},#{contentId},#{description})
+    </insert>
+    <insert id="addContent" useGeneratedKeys="true" keyProperty="contentId" parameterType="com.tipo.witter.pojo.ContentIn" >
+        INSERT INTO witter.blog_content (content) VALUES (#{content})
+    </insert>
+    <update id="updateBlog">
+        UPDATE witter.blog
+        SET
+        description=#{description}
+        WHERE blog_id=#{blogId}
+    </update>
+    <update id="updateContent">
+        UPDATE witter.blog_content
+        SET
+        content=#{content}
+        WHERE content_id=#{contentId}
+    </update>
+</mapper>

@@ -22,7 +22,7 @@ public class TagServiceImpl implements TagService{
     private TagMapper mapper;
     @Override
     public Msg addTag(TagIn in) {
-        Integer tagId=mapper.findTagByName(in.getName());
+        Integer tagId=mapper.findTagByName(in.getName(),in.getType());
         if (tagId!=null){
             in.setId(tagId);
             return Msg.success(in);
@@ -51,7 +51,15 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
-    public Msg findByHref(Integer href) {
-        return Msg.success(mapper.findTagByHref(href));
+    public Msg findByHref(Integer href,Integer type) {
+        return Msg.success(mapper.findTagByHref(href,type));
+    }
+
+    @Override
+    public Msg deleteTag(Integer tagId) {
+        if(mapper.deleteTag(tagId)==1){
+            return Msg.success();
+        }
+        return Msg.fail();
     }
 }

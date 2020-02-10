@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,13 @@ public class TagController {
         return service.findTagCount(type);
     }
     @GetMapping("findHref")
-    public Msg findHref(@RequestParam("href")Integer href){
-        return service.findByHref(href);
+    public Msg findHref(@RequestParam("href")Integer href,@RequestParam("type")Integer type){
+        return service.findByHref(href,type);
+    }
+
+    @GetMapping("delete")
+    @Validated
+    public Msg delete(@NotNull @RequestParam("tagId")Integer id){
+        return service.deleteTag(id);
     }
 }

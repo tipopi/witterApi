@@ -22,12 +22,18 @@ import java.util.List;
 public class TagMapperTest {
     @Autowired
     private TagMapper mapper;
+    @Autowired
+    private BlogMapper blogMapper;
     @Test
     public void addTag(){
         TagIn in=new TagIn();
         in.setName("c艹");
         mapper.addTag(in);
         System.out.println(in);
+    }
+    @Test
+    public void getBlog(){
+        System.out.println(blogMapper.getBlog(11));
     }
     @Test
     public void addMap(){
@@ -40,7 +46,7 @@ public class TagMapperTest {
     @Test
     public void find(){
         System.out.println(mapper.findTagCount(0));
-        System.out.println(mapper.findTagByName("java"));
-        System.out.println(mapper.findTagByHref(1));
+//        System.out.println(mapper.findTagByName("java"));
+//        System.out.println(mapper.findTagByHref(1));
     }
 }

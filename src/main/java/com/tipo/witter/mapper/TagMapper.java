@@ -2,6 +2,7 @@ package com.tipo.witter.mapper;
 
 import com.tipo.witter.pojo.TagCount;
 import com.tipo.witter.pojo.TagIn;
+import com.tipo.witter.pojo.TagItem;
 import com.tipo.witter.pojo.TagMap;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,8 +16,9 @@ import java.util.List;
 public interface TagMapper {
     Integer addTag(TagIn in);
     Integer addMap(List<TagMap> list);
-    Integer findTagByName(String name);
+    Integer findTagByName(@Param("name")String name,@Param("type")Integer type);
     List<TagCount> findTagCount(Integer type);
-    List<String> findTagByHref(Integer href);
+    List<TagItem> findTagByHref(@Param("href") Integer href, @Param("type")Integer type);
     Integer deleteMap(@Param("href")Integer href,@Param("type")Integer type);
+    Integer deleteTag(Integer tagId);
 }

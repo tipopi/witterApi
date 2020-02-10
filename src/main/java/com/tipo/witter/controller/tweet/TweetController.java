@@ -38,13 +38,10 @@ public class TweetController {
         return service.addTweet(in);
     }
     @GetMapping("findList")
-    public Msg findList(@RequestParam(value = "time") Long time){
-        return service.findTweetList(IntStatic.TWEET_FIRST_COUNT,time);
+    public Msg findList(@RequestParam(value = "time") Long time,@RequestParam(value = "page")Integer page){
+        return service.findTweetList(IntStatic.TWEET_FIRST_COUNT,time,(page-1)*IntStatic.TWEET_FIRST_COUNT);
     }
-    @GetMapping("findGlide")
-    public Msg findGlide(@RequestParam(value = "time") Long time){
-        return service.findTweetList(IntStatic.TWEET_GLIDE_COUNT,time);
-    }
+
     @Security(roles = {RoleEnum.ADMIN},createToken = true,checkToken =true )
     @DeleteMapping("delete")
     public Msg deleteTweet(@RequestParam("id") Integer id ) throws IOException {
@@ -54,11 +51,11 @@ public class TweetController {
         return service.deleteTweet(id);
     }
     @GetMapping("findByTag")
-    public Msg findByTag(@RequestParam("tagId") Integer tagId,@RequestParam(value = "time") Long time){
+    public Msg findByTag(@RequestParam("tagId") Integer tagId,@RequestParam(value = "time") Long time,@RequestParam(value = "page")Integer page){
         if (tagId<0){
             return Msg.fail();
         }
-        return service.findTweetByTag(tagId,IntStatic.TWEET_FIRST_COUNT,time);
+        return service.findTweetByTag(tagId,IntStatic.TWEET_FIRST_COUNT,time,(page-1)*IntStatic.TWEET_FIRST_COUNT);
     }
     @PutMapping("addPower")
     public Msg addPower(@RequestBody String json) throws IOException {

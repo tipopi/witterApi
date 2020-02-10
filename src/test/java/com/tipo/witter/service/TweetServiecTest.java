@@ -1,6 +1,7 @@
 package com.tipo.witter.service;
 
 import com.tipo.witter.mapper.TweetMapper;
+import com.tipo.witter.pojo.TweetIn;
 import com.tipo.witter.pojo.TweetResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,15 +26,19 @@ public class TweetServiecTest {
     private TweetMapper mapper;
     @Test
     public void addTweet(){
-        for (int i=8;i<12;i++){
-//            service.addTweet(1,"撒大苏打实打实"+i);
+        for (int i=1;i<100;i++){
+            TweetIn in=new TweetIn();
+            in.setText("test"+i);
+            in.setUserId(1);
+            service.addTweet(in);
         }
     }
     @Test
     public void findAll(){
-        for (TweetResult result:mapper.findTweetList(10,new Date(System.currentTimeMillis()))){
-            System.out.println(result);
-        }
+//        for (TweetResult result:mapper.findTweetList(10,new Date(System.currentTimeMillis()),0)){
+//            System.out.println(result);
+//        }
+        System.out.println(new Date());
 
     }
     @Test
