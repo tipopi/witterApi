@@ -4,6 +4,7 @@ import com.tipo.witter.pojo.BlogIn;
 import com.tipo.witter.pojo.BlogUp;
 import com.tipo.witter.pojo.Msg;
 
+
 /**
  * @author Tipo
  * @version 1.0
@@ -14,4 +15,6 @@ public interface BlogService {
     Msg getContent(Integer blogId);
     Msg addBlog(BlogIn in);
     Msg updateBlog(BlogUp up);
+    Msg deleteBlog(Integer blogId);
+    Msg addBrowse(Integer blogId);
 }

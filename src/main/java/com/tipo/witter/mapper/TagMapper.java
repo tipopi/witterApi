@@ -21,4 +21,5 @@ public interface TagMapper {
     List<TagItem> findTagByHref(@Param("href") Integer href, @Param("type")Integer type);
     Integer deleteMap(@Param("href")Integer href,@Param("type")Integer type);
     Integer deleteTag(Integer tagId);
+    Integer deleteMapBytag(Integer tagId);
 }

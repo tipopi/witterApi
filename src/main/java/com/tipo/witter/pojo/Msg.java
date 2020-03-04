@@ -23,8 +23,6 @@ public class Msg {
     private Meta meta;
     @JsonProperty
     private Object data;
-    @JsonIgnore
-    private static Msg result;
 
     private Msg(){
 
@@ -33,66 +31,47 @@ public class Msg {
      * 构造器隐藏，只能通过下面的方法获取对象
      * */
     public static Msg success(){
-        if (null==result){
-            result=new Msg();
-        }
+        Msg result=new Msg();
         result.setMeta(new Meta(ResultEnum.SUCCESS.value()));
-        result.data=null;
         return result;
     }
     public static Msg success(String msg){
-        if (null==result){
-            result=new Msg();
-        }
+        Msg result=new Msg();
         result.setMeta(new Meta(ResultEnum.SUCCESS.value(),msg));
-        result.data=null;
         return result;
     }
     public static Msg success(String msg,Object obj){
-        if (null==result){
-            result=new Msg();
-        }
+        Msg result=new Msg();
         result.setMeta(new Meta(ResultEnum.SUCCESS.value(),msg));
         result.data=obj;
         return result;
     }
     public static Msg success(Object obj){
-        if (null==result){
-            result=new Msg();
-        }
+        Msg result=new Msg();
         result.setMeta(new Meta(ResultEnum.SUCCESS.value()));
         result.data=obj;
         return result;
     }
     public static Msg fail(){
-        if (null==result){
-            result=new Msg();
-        }
+        Msg result=new Msg();
         result.setMeta(new Meta(ResultEnum.FAIL.value()));
-        result.data=null;
         return result;
     }
     public static Msg fail(Object obj){
-        if (null==result){
-            result=new Msg();
-        }
+        Msg result=new Msg();
         result.setMeta(new Meta(ResultEnum.FAIL.value()));
         result.data=obj;
         return result;
     }
     public static Msg fail(ResultEnum resultEnum){
-        if (null==result){
-            result=new Msg();
-        }
+        Msg result=new Msg();
         result.setMeta(new Meta(resultEnum.value()));
         result.data=null;
         return result;
     }
 
     public static Msg fail(ResultEnum resultEnum,String msg){
-        if (null==result){
-            result=new Msg();
-        }
+        Msg result=new Msg();
         result.setMeta(new Meta(resultEnum.value(),msg));
         result.data=null;
         return result;

@@ -1,5 +1,6 @@
 package com.tipo.witter.service.impl;
 
+import com.tipo.witter.exception.RollBackException;
 import com.tipo.witter.mapper.TagMapper;
 import com.tipo.witter.pojo.Msg;
 import com.tipo.witter.pojo.TagIn;
@@ -7,6 +8,7 @@ import com.tipo.witter.pojo.TagMap;
 import com.tipo.witter.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,10 +58,10 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
+    @Transactional(rollbackFor = RollBackException.class)
     public Msg deleteTag(Integer tagId) {
-        if(mapper.deleteTag(tagId)==1){
-            return Msg.success();
-        }
-        return Msg.fail();
+        mapper.deleteTag(tagId);
+        mapper.deleteMapBytag(tagId);
+        return Msg.success();
     }
 }

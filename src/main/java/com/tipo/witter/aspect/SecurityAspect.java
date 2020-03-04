@@ -8,13 +8,20 @@ import com.tipo.witter.pojo.Msg;
 import com.tipo.witter.util.StringUtil;
 import com.tipo.witter.util.code.CodeUtil;
 import com.tipo.witter.util.http.RequestUtil;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletWebRequest;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 安全aop，权限和token
@@ -27,6 +34,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecurityAspect {
     private final Logger log = LoggerFactory.getLogger(getClass());
+
 
     @Pointcut("execution(* com.tipo.witter.controller..*.*(..))")
     public void pointCut() {
@@ -57,6 +65,9 @@ public class SecurityAspect {
         if (roles.length > 0) {
             if (roles[0] == RoleEnum.LOGIN) {
                 return point.proceed();
+            }else if(RequestUtil.getRole()==null){
+                RequestUtil.login("","",RoleEnum.VISITOR);
+                return point.proceed();
             }
             for (RoleEnum role : roles) {
                 if (role == RequestUtil.getRole()) {
@@ -66,5 +77,4 @@ public class SecurityAspect {
         }
         return Msg.fail(ResultEnum.NO_AUTHORITY);
     }
-
 }

@@ -24,4 +24,6 @@ public interface BlogMapper {
     Integer updateBlog(BlogUp in);
     Integer updateContent(@Param("contentId")Integer contentId,@Param("content")String content);
     BlogItem getBlog(@Param("blogId")Integer blogId);
+    Integer deleteBlog(@Param("blogId")Integer blogId);
+    Integer addBrowse(@Param("blogId")Integer blogId);
 }

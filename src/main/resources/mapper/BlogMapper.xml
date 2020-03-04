@@ -18,7 +18,7 @@
     </resultMap>
     <select id="findList" resultMap="blogMap">
         SELECT  b.blog_id,b.title,b.content_id,b.description,b.browse,b.create_time,t.name,t.tag_id
-        FROM witter.Blog AS b LEFT JOIN witter.tag_map AS tm ON tm.href=b.blog_id AND tm.type=1 LEFT JOIN witter.tag AS t ON tm.tag_id=t.tag_id
+        FROM witter.Blog AS b LEFT JOIN witter.tag_map AS tm ON tm.href=b.blog_id AND tm.type=1 AND tm.status=0 LEFT JOIN witter.tag AS t ON tm.tag_id=t.tag_id
         WHERE b.create_time &lt;= #{createTime} AND b.status=0
         ORDER BY b.create_time DESC
         LIMIT #{offset},#{size}
@@ -26,14 +26,14 @@
 
     <select id="findListByTag" resultMap="blogMap">
         SELECT  b.blog_id,b.title,b.content_id,b.description,b.browse,b.create_time,t.name,t.tag_id
-        FROM witter.Blog AS b LEFT JOIN witter.tag_map AS tm ON tm.href=b.blog_id AND tm.type=1 LEFT JOIN witter.tag AS t ON tm.tag_id=t.tag_id
+        FROM witter.Blog AS b LEFT JOIN witter.tag_map AS tm ON tm.href=b.blog_id AND tm.type=1 AND tm.status=0 LEFT JOIN witter.tag AS t ON tm.tag_id=t.tag_id
         WHERE b.create_time &lt;= #{createTime} AND b.status=0 AND t.tag_id=#{tagId}
         ORDER BY b.create_time DESC
         LIMIT #{offset},#{size}
     </select>
     <select id="getBlog" resultMap="blogMap">
         SELECT  b.blog_id,b.title,b.content_id,b.description,b.browse,b.create_time,t.name,t.tag_id,bc.content
-        FROM witter.Blog AS b LEFT JOIN witter.tag_map AS tm ON tm.href=b.blog_id AND tm.type=1 LEFT JOIN witter.tag AS t ON tm.tag_id=t.tag_id
+        FROM witter.Blog AS b LEFT JOIN witter.tag_map AS tm ON tm.href=b.blog_id AND tm.type=1 AND tm.status=0 LEFT JOIN witter.tag AS t ON tm.tag_id=t.tag_id
         LEFT JOIN witter.blog_content AS bc ON b.content_id=bc.content_id
         WHERE b.blog_id=#{blogId} AND b.status=0
     </select>
@@ -48,6 +48,12 @@
     <insert id="addContent" useGeneratedKeys="true" keyProperty="contentId" parameterType="com.tipo.witter.pojo.ContentIn" >
         INSERT INTO witter.blog_content (content) VALUES (#{content})
     </insert>
+    <update id="addBrowse">
+            UPDATE witter.blog
+            SET
+            browse=browse+1
+            WHERE blog_id=#{blogId}
+    </update>
     <update id="updateBlog">
         UPDATE witter.blog
         SET
@@ -59,5 +65,11 @@
         SET
         content=#{content}
         WHERE content_id=#{contentId}
+    </update>
+    <update id="deleteBlog">
+        UPDATE witter.blog
+        SET
+        status=1
+        WHERE blog_id=#{blogId}
     </update>
 </mapper>

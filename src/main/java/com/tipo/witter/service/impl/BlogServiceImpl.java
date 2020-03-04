@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import	java.util.Date;
 import java.util.List;
 
+import com.tipo.witter.exception.RollBackException;
 import com.tipo.witter.mapper.BlogMapper;
 import com.tipo.witter.mapper.TagMapper;
 import com.tipo.witter.pojo.*;
@@ -45,7 +46,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = RollBackException.class)
     public Msg addBlog(BlogIn in) {
         ContentIn cIn=new ContentIn(in.getContent());
         mapper.addContent(cIn);
@@ -59,7 +60,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = RollBackException.class)
     public Msg updateBlog(BlogUp up) {
         boolean change=false;
         if(up.getContent()!=null){
@@ -77,7 +78,25 @@ public class BlogServiceImpl implements BlogService {
         if(change){
             return Msg.success(mapper.getBlog(up.getBlogId()));
         }
-        return Msg.success();
+        return Msg.success("no change");
+    }
+
+    @Override
+    @Transactional(rollbackFor = RollBackException.class)
+    public Msg deleteBlog(Integer blogId) {
+        tagMapper.deleteMap(blogId,1);
+        if(mapper.deleteBlog(blogId)==1){
+            return Msg.success();
+        }
+        return Msg.fail();
+    }
+
+    @Override
+    public Msg addBrowse(Integer blogId) {
+        if(mapper.addBrowse(blogId)==1){
+            return Msg.success();
+        }
+        return Msg.fail();
     }
 
     private void addTags(List<TagItem> tags,Integer blogId){

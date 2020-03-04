@@ -31,6 +31,12 @@
         status=1
         WHERE tag_id=#{value}
     </update>
+    <update id="deleteMapBytag" >
+        UPDATE witter.tag_map
+        SET
+        status=1
+        WHERE tag_id=#{value}
+    </update>
     <select id="findTagCount" resultType="com.tipo.witter.pojo.TagCount">
         SELECT t.tag_id AS tagId,t.name,COUNT(t.name)AS tagCount
         FROM witter.tag AS t ,witter.tag_map AS tm
@@ -41,6 +47,6 @@
     <select id="findTagByHref" resultType="com.tipo.witter.pojo.TagItem">
         SELECT t.name ,t.tag_id
         FROM witter.tag_map AS tm ,witter.tag AS t
-        WHERE tm.href=#{href} AND tm.type=#{type} AND tm.tag_id=t.tag_id
+        WHERE tm.href=#{href} AND tm.type=#{type} AND tm.tag_id=t.tag_id AND tm.status=0
     </select>
 </mapper>
