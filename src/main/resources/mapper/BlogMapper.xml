@@ -72,4 +72,24 @@
         status=1
         WHERE blog_id=#{blogId}
     </update>
+    <insert id="addImageKeys">
+        INSERT INTO witter.pic
+        (blog_id, pic_key) VALUES
+        <foreach collection="keys" item="key" separator="," index="index">
+            (#{blogId},#{key})
+        </foreach>
+    </insert>
+    <delete id="deletePic">
+        DELETE FROM witter.pic
+        WHERE blog_id=#{blogId}
+    </delete>
+    <select id="getDeletePic" resultType="java.lang.String">
+        SELECT pic_key FROM witter.pic WHERE blog_id=#{blogId}
+    </select>
+    <select id="getDeletePicExclude" resultType="java.lang.String">
+    SELECT p1.pic_key FROM
+    witter.pic AS p1 ,  witter.pic AS p2
+    WHERE p2.blog_id!=#{blogId} AND p1.pic_key=p2.pic_key
+    AND p1.blog_id=#{blogId}
+    </select>
 </mapper>

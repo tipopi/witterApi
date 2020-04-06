@@ -17,7 +17,16 @@ public class BlogIn {
     @NotNull
     private String content;
     private List<TagItem> tags;
+    private List <String> images;
     public BlogIn() {
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public Integer getBlogId() {
@@ -77,6 +86,7 @@ public class BlogIn {
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", tags=" + tags +
+                ", images=" + images +
                 '}';
     }
 }

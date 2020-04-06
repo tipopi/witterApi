@@ -1,13 +1,19 @@
 package com.tipo.witter.service.impl;
-import java.util.ArrayList;
-import	java.util.Date;
-import java.util.List;
+import java.util.*;
 
+import com.qiniu.common.QiniuException;
+import com.qiniu.http.Response;
+import com.qiniu.storage.BucketManager;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.Region;
+import com.qiniu.storage.model.BatchStatus;
+import com.qiniu.util.Auth;
 import com.tipo.witter.exception.RollBackException;
 import com.tipo.witter.mapper.BlogMapper;
 import com.tipo.witter.mapper.TagMapper;
 import com.tipo.witter.pojo.*;
 import com.tipo.witter.service.BlogService;
+import com.tipo.witter.tool.BaseStatic;
 import com.tipo.witter.tool.IntStatic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,11 +54,15 @@ public class BlogServiceImpl implements BlogService {
     @Override
     @Transactional(rollbackFor = RollBackException.class)
     public Msg addBlog(BlogIn in) {
+
         ContentIn cIn=new ContentIn(in.getContent());
         mapper.addContent(cIn);
         in.setContentId(cIn.getContentId());
         mapper.addBlog(in);
         Integer blogId=in.getBlogId();
+        if(!in.getImages().isEmpty()){
+            this.mapper.addImageKeys(in.getBlogId(), in.getImages());
+        }
         if(in.getTags()!=null&&!in.getTags().isEmpty()){
             addTags(in.getTags(),blogId);
         }
@@ -63,6 +73,9 @@ public class BlogServiceImpl implements BlogService {
     @Transactional(rollbackFor = RollBackException.class)
     public Msg updateBlog(BlogUp up) {
         boolean change=false;
+        if(!up.getImages().isEmpty()){
+            this.mapper.addImageKeys(up.getBlogId(), up.getImages());
+        }
         if(up.getContent()!=null){
             mapper.updateContent(up.getContentId(),up.getContent());
             change=true;
@@ -85,6 +98,7 @@ public class BlogServiceImpl implements BlogService {
     @Transactional(rollbackFor = RollBackException.class)
     public Msg deleteBlog(Integer blogId) {
         tagMapper.deleteMap(blogId,1);
+        deleteImg(blogId);
         if(mapper.deleteBlog(blogId)==1){
             return Msg.success();
         }
@@ -98,7 +112,41 @@ public class BlogServiceImpl implements BlogService {
         }
         return Msg.fail();
     }
-
+    private void deleteImg(Integer blogId){
+        List<String> keys=mapper.getDeletePic(blogId);
+        keys.removeAll(mapper.getDeletePicExclude(blogId));
+        if(!keys.isEmpty()){
+            deletePut(keys);
+        }
+        mapper.deletePic(blogId);
+    }
+    private void deletePut(List<String> keys){
+        Configuration cfg = new Configuration(Region.region0());
+        String accessKey = BaseStatic.ACCESS_KEY;
+        String secretKey = BaseStatic.SECRET_KEY;
+        String bucket = BaseStatic.BUCKET;
+        Auth auth = Auth.create(accessKey, secretKey);
+        BucketManager bucketManager = new BucketManager(auth, cfg);
+        try {
+            String[] keyList= keys.toArray(new String[0]);
+            //单次批量请求的文件数量不得超过1000
+            BucketManager.BatchOperations batchOperations = new BucketManager.BatchOperations();
+            batchOperations.addDeleteOp(bucket, keyList);
+            Response response = bucketManager.batch(batchOperations);
+            BatchStatus[] batchStatusList = response.jsonToObject(BatchStatus[].class);
+            for (int i = 0; i < keyList.length; i++) {
+                BatchStatus status = batchStatusList[i];
+                String key = keyList[i];
+                if (status.code == 200) {
+                    System.out.println("delete success");
+                } else {
+                    System.out.println(status.data.error);
+                }
+            }
+        } catch (QiniuException ex) {
+            System.err.println(ex.response.toString());
+        }
+    }
     private void addTags(List<TagItem> tags,Integer blogId){
         Integer type=1;
         List<TagMap> tagMap=new ArrayList<>();

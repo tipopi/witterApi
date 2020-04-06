@@ -26,4 +26,8 @@ public interface BlogMapper {
     BlogItem getBlog(@Param("blogId")Integer blogId);
     Integer deleteBlog(@Param("blogId")Integer blogId);
     Integer addBrowse(@Param("blogId")Integer blogId);
+    Integer addImageKeys(@Param("blogId")Integer blogId,@Param("keys")List<String> keys);
+    List<String> getDeletePic(@Param("blogId")Integer blogId);
+    List<String> getDeletePicExclude(@Param("blogId")Integer blogId);
+    Integer deletePic(@Param("blogId")Integer blogId);
 }

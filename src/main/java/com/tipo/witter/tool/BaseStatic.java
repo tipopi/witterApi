@@ -30,4 +30,8 @@ public class BaseStatic {
     public static final String ADMIN_NAME="Tipo";
     /**分页每页总条数*/
     public static final Integer ROWS  = 25;
+//    七牛云bucket
+    public static final String ACCESS_KEY="MJm_bXHCN_sS_q30S76MoC1eO7MOWQAII8hN_sbE";
+    public static final String SECRET_KEY="bY0Ovfvjw3vkied8i_U8tYq8arhximrzdaz8k_8e";
+    public static final String BUCKET="witter-pi";
 }

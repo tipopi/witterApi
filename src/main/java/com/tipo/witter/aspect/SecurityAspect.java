@@ -48,19 +48,16 @@ public class SecurityAspect {
      **/
     @Around(value = "pointCut()&&@annotation(security)")
     public Object roleAop(ProceedingJoinPoint point, Security security) throws Throwable {
-        if (security.checkToken()) {
-            String s1 = RequestUtil.getToken();
-            log.info("sessionToken:" + s1);
-            String s2 = CodeUtil.getToken();
-            log.info("requestToken:" + s2);
-            if (StringUtil.isEmpty(s1) || StringUtil.isEmpty(s2) || !s1.equals(s2)) {
-                return Msg.fail(ResultEnum.TOKEN_ERRO);
-            }
-        }
-        if (security.createToken()) {
-            RequestUtil.createToken(CodeUtil.createToken());
-            log.info("createToken:" + RequestUtil.getToken());
-        }
+//        if (security.checkToken()) {
+//            String s1 = RequestUtil.getToken();
+//            log.info("sessionToken:" + s1);
+//            String s2 = CodeUtil.getToken();
+//            log.info("requestToken:" + s2);
+//            if (StringUtil.isEmpty(s1) || StringUtil.isEmpty(s2) || !s1.equals(s2)) {
+//                return Msg.fail(ResultEnum.TOKEN_ERRO);
+//            }
+//        }
+
         RoleEnum[] roles = security.roles();
         if (roles.length > 0) {
             if (roles[0] == RoleEnum.LOGIN) {
@@ -75,6 +72,29 @@ public class SecurityAspect {
                 }
             }
         }
+//        if (security.createToken()) {
+//            RequestUtil.createToken(CodeUtil.createToken());
+//            log.info("createToken:" + RequestUtil.getToken());
+//        }
         return Msg.fail(ResultEnum.NO_AUTHORITY);
+    }
+
+    @Around(value = "pointCut()&&@annotation(security)")
+    public Object tokenAop(ProceedingJoinPoint point, Security security) throws Throwable {
+        if (security.checkToken()) {
+            String s1 = RequestUtil.getToken();
+            log.info("sessionToken:" + s1);
+            String s2 = CodeUtil.getToken();
+            log.info("requestToken:" + s2);
+            if (StringUtil.isEmpty(s1) || StringUtil.isEmpty(s2) || !s1.equals(s2)) {
+                return Msg.fail(ResultEnum.TOKEN_ERRO);
+            }
+        }
+        if (security.createToken()) {
+            RequestUtil.createToken(CodeUtil.createToken());
+            log.info("createToken:" + RequestUtil.getToken());
+        }
+        return point.proceed();
+
     }
 }

@@ -11,7 +11,7 @@ import com.tipo.witter.util.http.RequestUtil;
 
 
 /**
- *  备选方案一，单例返回中间件，暂时不开启token,错误优化，找时间取缔了,来不及了现在就开车！！
+ *
  * @author  Tipo
  * @date 7/27/20198:38 AM
  * @version 1.0

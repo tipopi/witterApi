@@ -17,8 +17,16 @@ public class BlogUp {
     private String description;
     private String content;
     private List<TagItem> tags;
-
+    private List <String> images;
     public BlogUp() {
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     public Integer getBlogId() {
@@ -78,6 +86,7 @@ public class BlogUp {
                 ", description='" + description + '\'' +
                 ", content='" + content + '\'' +
                 ", tags=" + tags +
+                ", imgs=" + images+
                 '}';
     }
 }

@@ -1,8 +1,13 @@
 package com.tipo.witter.controller.common;
 
+import com.fasterxml.jackson.databind.JsonSerializable;
 import com.qiniu.util.Auth;
+import com.tipo.witter.tool.BaseStatic;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**预留图片接口
  * @author Tipo
@@ -12,12 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PicController {
     @GetMapping("picToken")
-    public String getToken(){
-        String accessKey = "MJm_bXHCN_sS_q30S76MoC1eO7MOWQAII8hN_sbE";
-        String secretKey = "bY0Ovfvjw3vkied8i_U8tYq8arhximrzdaz8k_8e";
-        String bucket = "witter-pi";
+    public Map<String, String> getToken(){
+        String accessKey = BaseStatic.ACCESS_KEY;
+        String secretKey = BaseStatic.SECRET_KEY;
+        String bucket = BaseStatic.BUCKET;
         Auth auth = Auth.create(accessKey, secretKey);
         String upToken = auth.uploadToken(bucket);
-        return upToken;
+        Map<String, String> map=new HashMap<>(1);
+        map.put("token",upToken);
+        return map;
     }
 }
