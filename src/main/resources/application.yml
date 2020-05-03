@@ -21,7 +21,7 @@ spring:
       jdbc-url: jdbc:mysql://127.0.0.1:3306/witter?serverTimezone=UTC&useSSL=false
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
-      password: 123456
+      password: liu123456
       hikariz:
         maximum-pool-size: 5
         auto-commit: false

@@ -33,5 +33,5 @@ public class BaseStatic {
 //    七牛云bucket
     public static final String ACCESS_KEY="MJm_bXHCN_sS_q30S76MoC1eO7MOWQAII8hN_sbE";
     public static final String SECRET_KEY="bY0Ovfvjw3vkied8i_U8tYq8arhximrzdaz8k_8e";
-    public static final String BUCKET="witter-pi";
+    public static final String BUCKET="witter2";
 }
