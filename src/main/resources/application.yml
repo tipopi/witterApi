@@ -18,7 +18,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     primary:
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/witter?serverTimezone=UTC&useSSL=false
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/witter?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf8
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: liu123456
