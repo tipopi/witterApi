@@ -12,4 +12,6 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:properties/admin.properties")
 public class PropertiesConfig {
+
 }
+

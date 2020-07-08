@@ -28,7 +28,7 @@ public class TweetServiecTest {
     public void addTweet(){
         for (int i=1;i<100;i++){
             TweetIn in=new TweetIn();
-            in.setText("test"+i);
+            in.setText("滚动测试"+i);
             in.setUserId(1);
             service.addTweet(in);
         }
