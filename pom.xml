@@ -93,7 +93,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>6.0.3</version>
+			<version>8.0.28</version>
 		</dependency>
 
 		<!-- 引入新版本的HikariCP，它是目前最高性能的数据库连接池实现 -->
